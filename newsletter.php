@@ -2,6 +2,7 @@
 
 namespace Grav\Plugin;
 
+use Grav\Common;
 use Grav\Common\Page\Collection;
 use Grav\Common\Plugin;
 use Grav\Common\Twig\Twig;
@@ -57,6 +58,7 @@ class NewsletterPlugin extends Plugin
             $this->enable([
                 'onAdminTwigTemplatePaths' => ['onAdminTwigTemplatePaths', 0],
                 'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
+                'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
             ]);
 //        }
     }
@@ -74,6 +76,12 @@ class NewsletterPlugin extends Plugin
         $twig = $this->grav['twig'];
 
         $twig->twig_vars['newsletter'] = $this->newsletter;
+    }
+
+    public function onTwigTemplatePaths() 
+    {
+         $locator = \Grav\Common\Grav::instance()['locator'];
+         $this->grav['twig']->twig_paths[] = $locator->findResource('plugins://');
     }
 
     public function subscriberController()
