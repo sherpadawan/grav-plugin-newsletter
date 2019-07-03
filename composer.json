@@ -26,5 +26,8 @@
         "psr-4": {
             "Grav\\Plugin\\Newsletter\\": "classes/"
         }
+    },
+    "scripts": {
+      "post-install-cmd": "mkdir -p ../../user/data/newsletter/subscribers"
     }
 }
