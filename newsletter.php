@@ -37,7 +37,8 @@ class NewsletterPlugin extends Plugin
             throw new \Exception('Newsletter Plugin failed to load. Composer dependencies not met.');
         }
         require_once $autoload;
-
+        //@TODO remove this when autoload will work
+        require_once __DIR__. '/classes/newsletter.php';
         $this->newsletter = new Newsletter\Newsletter($this->grav);
 
         $route = $this->config->get('plugins.newsletter.admin.route');
